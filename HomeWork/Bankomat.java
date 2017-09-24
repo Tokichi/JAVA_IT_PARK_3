@@ -1,6 +1,7 @@
 import java.util.Scanner;
 class Bankomat {
 	public static void main(String[] args) {
+        System.out.println ("Какую сумму вы хотите снять со счета?");
 		Scanner scanner = new Scanner(System.in);
 		int x = scanner.nextInt();
 		int x1 = x / 5000;

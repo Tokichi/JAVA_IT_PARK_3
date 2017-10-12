@@ -4,7 +4,7 @@ class Channel1 {
     long timeNow() {
         long timeNow = System.currentTimeMillis();
         //86400000 - количество миллисекунд в сутках, 10800000 - сдвиг на 3 часа для нашего часового пояса
-        long timeDay = (int) (timeNow % 86400000 + 10800000) % timeNow;
+        long timeDay = (int) (timeNow + 10800000) % 86400000;
         return timeDay;
     }
 

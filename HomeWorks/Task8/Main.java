@@ -17,5 +17,15 @@ public class Main {
         System.out.println("Разница в возрасте двух сравниваемых людей равна: " + a);
         System.out.println("Разница в росте двух сравниваемых людей равна:" + b);
         System.out.println("Разница в весе двух сравниваемых людей равна:" + c);
+
+        HumanSorter humanSorter = new BubbleHumanSorter();
+        System.out.println("Сортировка по возрасту:");
+        humanSorter.sort(ageHumanComparator, humans);
+        System.out.println("Сортировка по росту:");
+        humanSorter.sort(heightHumanComparator, humans);
+        System.out.println("Сортировка по весу:");
+        humanSorter.sort(weightHumanComparator, humans);
+
+
     }
 }

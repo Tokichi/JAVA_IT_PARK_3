@@ -1,10 +1,10 @@
 package com.company;
 
 public class Human {
-    String name;
-    int height;
-    int age;
-    int weight;
+    private String name;
+    private int height;
+    private int age;
+    private int weight;
 
     public Human(String name, int height, int age, int weight) {
         this.name = name;
@@ -23,5 +23,21 @@ public class Human {
         } else {
             System.out.println("Вес не может быть отрицательным");
         }
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public int getHeight() {
+        return height;
+    }
+
+    public int getAge() {
+        return age;
+    }
+
+    public int getWeight() {
+        return weight;
     }
 }

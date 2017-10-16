@@ -11,12 +11,6 @@ public class Main {
         HumanComparator ageHumanComparator = new AgeHumanComparator();
         HumanComparator heightHumanComparator = new HeightHumanComparator();
         HumanComparator weightHumanComparator = new WeidthHumanComparator();
-        int a = ageHumanComparator.compare(humans[1], humans[0]);
-        int b = heightHumanComparator.compare(humans[1], humans[0]);
-        int c = weightHumanComparator.compare(humans[1], humans[0]);
-        System.out.println("Разница в возрасте двух сравниваемых людей равна: " + a);
-        System.out.println("Разница в росте двух сравниваемых людей равна:" + b);
-        System.out.println("Разница в весе двух сравниваемых людей равна:" + c);
 
         HumanSorter humanSorter = new BubbleHumanSorter();
         System.out.println("Сортировка по возрасту:");

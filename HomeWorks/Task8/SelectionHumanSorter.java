@@ -19,7 +19,7 @@ public class SelectionHumanSorter implements HumanSorter {
             }
         }
         for (int i = 0; i < humans.length; i++) {
-            System.out.println(humans[i].getName() + ", возраст :" + humans[i].getAge() + ",вес :" + humans[i].getWeight() + ", рост:" + humans[i].getHeight());
+            System.out.println(humans[i].getName() + ", возраст: " + humans[i].getAge() + ", вес: " + humans[i].getWeight() + ", рост: " + humans[i].getHeight());
         }
     }
 }

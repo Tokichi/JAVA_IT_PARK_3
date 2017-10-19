@@ -1,11 +1,12 @@
 import java.util.Scanner;
 
-public class ArrayList implements List {
+public class ArrayList implements List{
 
 
     private int array[] = new int[10];
     private Scanner scanner = new Scanner(System.in);
     private int flag = 0;
+    private int iteratorFlag = 0;
 
     public void addInt() {
         if (flag < array.length) {
@@ -44,7 +45,16 @@ public class ArrayList implements List {
     public void addIndexInt() {
     }
 
-    public int getFlag() {
-        return flag;
+    public int next() {
+        return array[iteratorFlag++];
     }
+
+    public boolean hasNext() {
+        if (iteratorFlag < flag) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
 }

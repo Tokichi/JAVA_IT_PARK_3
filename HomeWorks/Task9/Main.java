@@ -6,7 +6,7 @@ public class Main {
     public static void main(String[] args) throws IOException {
         List arrayList = new ArrayList();
         Scanner scanner = new Scanner(System.in);
-        Iterator iterator =  new IteratorList();
+
         while (true) {
             Menu.showMenu();
             int command = scanner.nextInt();
@@ -28,6 +28,9 @@ public class Main {
                 }
                 break;
                 case 5:{
+                    while (arrayList.hasNext()){
+                        System.out.println(arrayList.next());
+                    }
                 }
                 break;
             }

@@ -5,5 +5,6 @@ public interface List extends Iterator{
     void addIndexInt();
     boolean hasNext();
     int next();
+    void setIteratorFlag(int iteratorFlag);
 
 }

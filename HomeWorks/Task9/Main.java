@@ -10,27 +10,28 @@ public class Main {
         while (true) {
             Menu.showMenu();
             int command = scanner.nextInt();
-            switch (command){
-                case 1:{
+            switch (command) {
+                case 1: {
                     arrayList.addInt();
                 }
                 break;
-                case 2:{
+                case 2: {
                     arrayList.deleteInt();
                 }
                 break;
-                case 3:{
+                case 3: {
                     arrayList.findInt();
                 }
                 break;
-                case 4:{
+                case 4: {
                     arrayList.addIndexInt();
                 }
                 break;
-                case 5:{
-                    while (arrayList.hasNext()){
+                case 5: {
+                    while (arrayList.hasNext()) {
                         System.out.println(arrayList.next());
                     }
+                    arrayList.setIteratorFlag(0);
                 }
                 break;
             }

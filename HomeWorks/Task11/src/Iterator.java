@@ -1,6 +1,5 @@
-package com.company;
-
 public interface Iterator {
-    String next();
+    String nextName();
+    int nextAge();
     boolean hasNext();
 }

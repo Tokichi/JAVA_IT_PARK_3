@@ -83,7 +83,6 @@ public class HashSet<V> {
                     return tempNode.value;
                 }
             }
-            current++;
             return tempNode.value;
         }
     }

@@ -3,7 +3,7 @@ package com.company;
 import java.util.Iterator;
 
 public class Main {
-    public static void printList(HashSet set) {
+    public static void printHashSet(HashSet set) {
         Iterator iterator = set.iterator();
 
         while (iterator.hasNext()) {
@@ -26,7 +26,7 @@ public class Main {
         set.put("Артем");
         set.put("Сергей");
 
-        printList(set);
+        printHashSet(set);
     }
 
 }

@@ -1,7 +1,7 @@
 package com.company;
 
 public class PmTask implements Runnable {
-    String text;
+    static String text;
 
     @Override
     public void run() {
@@ -13,9 +13,5 @@ public class PmTask implements Runnable {
                 System.out.println(letter[i]);
             }
         }
-    }
-
-    public void setText(String text) {
-        this.text = text;
     }
 }

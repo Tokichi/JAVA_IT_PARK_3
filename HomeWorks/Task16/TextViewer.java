@@ -10,21 +10,25 @@ public class TextViewer {
     }
 
     public void addTask(Runnable task) {
+        if (task instanceof LettersTask) {
+            ((LettersTask) task).setText(text);
             tasks[count] = task;
             count++;
+        } else if (task instanceof DigitsTask) {
+            ((DigitsTask) task).setText(text);
+            tasks[count] = task;
+            count++;
+        } else if (task instanceof PmTask) {
+            ((PmTask) task).setText(text);
+            tasks[count] = task;
+            count++;
+        }
     }
 
     public void process() {
-        getText(text);
         for (int i = 0; i < tasks.length; i++) {
             Thread runnableThread = new Thread(tasks[i]);
             runnableThread.start();
         }
-    }
-
-    static private void getText(String text) {
-        LettersTask.text = text;
-        DigitsTask.text = text;
-        PmTask.text = text;
     }
 }

@@ -1,7 +1,7 @@
 package com.company;
 
 public class LettersTask implements Runnable {
-    static String text;
+    private String text;
 
     @Override
     public void run() {
@@ -12,5 +12,9 @@ public class LettersTask implements Runnable {
                 System.out.println(letter[i]);
             }
         }
+    }
+
+    public void setText(String text) {
+        this.text = text;
     }
 }

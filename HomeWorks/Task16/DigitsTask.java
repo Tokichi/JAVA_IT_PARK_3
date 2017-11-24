@@ -1,6 +1,6 @@
 package com.company;
 
-public class DigitsTask implements Runnable{
+public class DigitsTask implements TextSetters{
     private String text;
 
     @Override

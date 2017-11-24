@@ -10,16 +10,8 @@ public class TextViewer {
     }
 
     public void addTask(Runnable task) {
-        if (task instanceof LettersTask) {
-            ((LettersTask) task).setText(text);
-            tasks[count] = task;
-            count++;
-        } else if (task instanceof DigitsTask) {
-            ((DigitsTask) task).setText(text);
-            tasks[count] = task;
-            count++;
-        } else if (task instanceof PmTask) {
-            ((PmTask) task).setText(text);
+        if (task instanceof TextSetters) {
+            ((TextSetters) task).setText(text);
             tasks[count] = task;
             count++;
         }

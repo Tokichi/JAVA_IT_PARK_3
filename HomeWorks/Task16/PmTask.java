@@ -1,6 +1,6 @@
 package com.company;
 
-public class PmTask implements Runnable {
+public class PmTask implements TextSetters {
     private String text;
 
     @Override

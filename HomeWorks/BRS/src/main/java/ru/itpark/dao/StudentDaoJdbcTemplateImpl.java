@@ -72,11 +72,11 @@ public class StudentDaoJdbcTemplateImpl implements StudentDao {
     }
 
     public Student find(int id) {
-//        try {
+        try {
             return template.queryForObject(SQL_SELECT_STUDENT_BY_ID, studentRowMapper, id);
-//        } catch (EmptyResultDataAccessException e) {
-//            throw new IllegalArgumentException("Студент с id <" + id + "> не найден");
-//        }
+        } catch (EmptyResultDataAccessException e) {
+            return null;
+        }
     }
 
     public void update(final Student model) {

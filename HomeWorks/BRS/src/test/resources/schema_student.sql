@@ -1,3 +1,4 @@
+DROP TABLE student IF EXISTS;
 CREATE TABLE student (
   id IDENTITY PRIMARY KEY,
   studname VARCHAR(30),

@@ -46,4 +46,48 @@ public class StudentDaoJdbcTemplateImplTest {
     public void findTestOnBadUserId() {
         testedStudentDao.find(6);
     }
+
+    @Test
+    public void saveTest() throws Exception {
+        Student expected = Student.builder()
+                .id(4)
+                .name("Михаил")
+                .surname("Михайлов")
+                .patronymic("Михайлович")
+                .login("misha")
+                .password("12345")
+                .email("misha@mail.ru")
+                .build();
+
+        testedStudentDao.save(expected);
+        Student actual = testedStudentDao.find(4);
+
+        Assert.assertEquals(expected, actual);
+    }
+
+    @Test
+    public void deleteTest() throws Exception {
+        testedStudentDao.delete(1);
+        Student expected = null;
+        Student actual = testedStudentDao.find(1);
+
+        Assert.assertEquals(expected, actual);
+    }
+    @Test
+    public void updateTest() throws Exception {
+        Student expected = Student.builder()
+                .id(1)
+                .name("Михаил")
+                .surname("Михайлов")
+                .patronymic("Михайлович")
+                .login("misha")
+                .password("12345")
+                .email("misha@mail.ru")
+                .build();
+        testedStudentDao.update(expected);
+        Student actual = testedStudentDao.find(1);
+
+        Assert.assertEquals(expected, actual);
+    }
 }
+

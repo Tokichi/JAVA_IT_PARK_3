@@ -14,15 +14,16 @@ public class Main {
         StudentDao studentDao = new StudentDaoJdbcTemplateImpl(dataSource);
 //        Student student = studentDao.find(1);
 //        System.out.println(student);
-        Student student = Student.builder()
-                .name("Артем")
-                .surname("Гладырев")
-                .patronymic("Сергеевич")
-                .login("gladyrev")
-                .password("3543343")
-                .email("gladyrev@mail.ru")
-                .id(1)
-                .build();
-        studentDao.update(student);
+//        Student student = Student.builder()
+//                .name("Артем")
+//                .surname("Гладырев")
+//                .patronymic("Сергеевич")
+//                .login("gladyrev")
+//                .password("3543343")
+//                .email("gladyrev@mail.ru")
+//                .id(1)
+//                .build();
+//        studentDao.update(student);
+        studentDao.find(1);
     }
 }

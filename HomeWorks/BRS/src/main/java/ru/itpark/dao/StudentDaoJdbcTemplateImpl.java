@@ -5,8 +5,6 @@ import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.PreparedStatementCreator;
 import org.springframework.jdbc.core.RowMapper;
-import org.springframework.jdbc.support.GeneratedKeyHolder;
-import org.springframework.jdbc.support.KeyHolder;
 import ru.itpark.models.Student;
 
 import javax.sql.DataSource;
@@ -19,11 +17,9 @@ import java.util.List;
 public class StudentDaoJdbcTemplateImpl implements StudentDao {
 
     //language=SQL
-    private static final String SQL_INSERT_USER = "INSERT INTO student(studname, surname, patronymic, login, password, email) VALUES (?, ?, ?, ?, ?, ?)";
-    //language=SQL
     private static final String SQL_SELECT_STUDENT_BY_ID = "SELECT * FROM student WHERE id = ?";
     //language=SQL
-    private static final String SQL_UPDATE_STUDENT_BY_ID = "UPDATE student SET studname = ?, surname = ?, patronymic = ?, login = ?, password = ?, email= ? WHERE id = ?";
+    private static final String SQL_UPDATE_STUDENT_BY_ID = "UPDATE student SET name = ?, surname = ?, patronymic = ?, login = ?, password = ?, email= ? WHERE id = ?";
     //language=SQL
     private static final String SQL_DELETE_STUDENT_BY_ID = "DELETE FROM student WHERE id = ?";
 
@@ -37,8 +33,8 @@ public class StudentDaoJdbcTemplateImpl implements StudentDao {
         @Override
         public Student mapRow(ResultSet resultSet, int i) throws SQLException {
             Student student = Student.builder()
-                    .id(resultSet.getInt("id"))
-                    .name(resultSet.getString("studname"))
+                    .id(resultSet.getLong("id"))
+                    .name(resultSet.getString("name"))
                     .surname(resultSet.getString("surname"))
                     .patronymic(resultSet.getString("patronymic"))
                     .login(resultSet.getString("login"))
@@ -53,48 +49,32 @@ public class StudentDaoJdbcTemplateImpl implements StudentDao {
         return null;
     }
 
-    public void save(final Student model) {
-        KeyHolder keyHolder = new GeneratedKeyHolder();
-        template.update(
-                new PreparedStatementCreator() {
-                    public PreparedStatement createPreparedStatement(Connection connection) throws SQLException {
-                        PreparedStatement ps = connection.prepareStatement(SQL_INSERT_USER, new String[]{"id"});
-                        ps.setString(1, model.getName());
-                        ps.setString(2, model.getSurname());
-                        ps.setString(3, model.getPatronymic());
-                        ps.setString(4, model.getLogin());
-                        ps.setString(5, model.getPassword());
-                        ps.setString(6, model.getEmail());
-                        return ps;
-                    }
-                }, keyHolder);
-        model.setId(keyHolder.getKey().intValue());
+    public void save(Student model) {
     }
 
     public Student find(int id) {
         try {
             return template.queryForObject(SQL_SELECT_STUDENT_BY_ID, studentRowMapper, id);
         } catch (EmptyResultDataAccessException e) {
-            return null;
+            throw new IllegalArgumentException("Студент с id <" + id + "> не найден");
         }
     }
 
     public void update(final Student model) {
-        template.update(
-                new PreparedStatementCreator() {
-                    @Override
-                    public PreparedStatement createPreparedStatement(Connection connection) throws SQLException {
-                        PreparedStatement ps = connection.prepareStatement(SQL_UPDATE_STUDENT_BY_ID);
-                        ps.setString(1, model.getName());
-                        ps.setString(2, model.getSurname());
-                        ps.setString(3, model.getPatronymic());
-                        ps.setString(4, model.getLogin());
-                        ps.setString(5, model.getPassword());
-                        ps.setString(6, model.getEmail());
-                        ps.setInt(7, model.getId());
-                        return ps;
-                    }
-                });
+        template.update(new PreparedStatementCreator() {
+            @Override
+            public PreparedStatement createPreparedStatement(Connection connection) throws SQLException {
+                PreparedStatement preparedStatement = connection.prepareStatement(SQL_UPDATE_STUDENT_BY_ID);
+                preparedStatement.setString(1, model.getName());
+                preparedStatement.setString(2, model.getSurname());
+                preparedStatement.setString(3, model.getPatronymic());
+                preparedStatement.setString(4, model.getLogin());
+                preparedStatement.setString(5, model.getPassword());
+                preparedStatement.setString(6, model.getEmail());
+                preparedStatement.setLong(7, model.getId());
+                return preparedStatement;
+            }
+        });
     }
 
     public void delete(int id) {

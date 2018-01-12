@@ -1,3 +1,0 @@
-INSERT INTO student (id, studname, surname, patronymic, login, password, email) VALUES (1, 'Василий','Васильев','Васильевич','vasya','12345','vasya@mail.ru');
-INSERT INTO student (id, studname, surname, patronymic, login, password, email) VALUES (2, 'Иван','Иванов','Иванович','ivan','12345','ivan@mail.ru');
-INSERT INTO student (id, studname, surname, patronymic, login, password, email) VALUES (3, 'Петр','Петров','Петрович','peter','12345','peter@mail.ru');

@@ -2,11 +2,11 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>Студенты</title>
+    <title>Преподаватели</title>
     <link href="/css/style.css" rel="stylesheet" type="text/css">
 </head>
 <body>
-<h1>${hello}</h1>
+<h1>Список преподавателей</h1>
 <table>
     <tr>
         <th>Id</th>
@@ -17,19 +17,20 @@
         <th>Пароль</th>
         <th>Почта</th>
     </tr>
-    <c:forEach items="${students}" var="student">
+    <c:forEach items="${teachers}" var="teacher">
         <tr>
-            <td>${student.id}</td>
-            <td>${student.name}</td>
-            <td>${student.surname}</td>
-            <td>${student.patronymic}</td>
-            <td>${student.login}</td>
-            <td>${student.password}</td>
-            <td>${student.email}</td>
+            <td>${teacher.id}</td>
+            <td>${teacher.name}</td>
+            <td>${teacher.surname}</td>
+            <td>${teacher.patronymic}</td>
+            <td>${teacher.login}</td>
+            <td>${teacher.password}</td>
+            <td>${teacher.email}</td>
         </tr>
     </c:forEach>
 </table>
-<form action="/students_as_jsp" method="post">
+<h1>Добавление нового преподавателя</h1>
+<form action="/teachers" method="post">
     <input type="text" name="name" placeholder="Имя">
     <input type="text" name="surname" placeholder="Фамилия">
     <input type="text" name="patronymic" placeholder="Отчество">

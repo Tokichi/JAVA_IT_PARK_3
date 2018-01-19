@@ -1,7 +1,10 @@
 package ru.itpark.models;
 
 import lombok.*;
+import javax.persistence.*;
 
+@Entity
+@Table(name = "study_group")
 @Getter
 @Setter
 @AllArgsConstructor
@@ -11,6 +14,8 @@ import lombok.*;
 @Builder
 
 public class Group {
-    private int id;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
     private String name;
 }

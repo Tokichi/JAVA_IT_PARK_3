@@ -1,9 +1,7 @@
 package ru.itpark.models;
 
 import lombok.*;
-
 import javax.persistence.*;
-import java.util.List;
 
 @Entity
 @Table(name = "student")
@@ -14,8 +12,8 @@ import java.util.List;
 @ToString
 @EqualsAndHashCode
 @Builder
-public class Student {
 
+public class Student {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -25,5 +23,4 @@ public class Student {
     private String login;
     private String password;
     private String email;
-    private String group_id;
 }

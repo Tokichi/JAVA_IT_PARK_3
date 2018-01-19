@@ -6,10 +6,29 @@
          version="2.4">
     <servlet>
         <servlet-name>studentJspServlet</servlet-name>
-        <servlet-class>ru.itpark.servlets.StudentJspServlet</servlet-class>
+        <servlet-class>ru.itpark.servlets.StudentsServlet</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>studentJspServlet</servlet-name>
         <url-pattern>/students</url-pattern>
     </servlet-mapping>
+    <servlet>
+        <servlet-name>teacherJspServlet</servlet-name>
+        <servlet-class>ru.itpark.servlets.TeachersServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>teacherJspServlet</servlet-name>
+        <url-pattern>/teachers</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>groupJspServlet</servlet-name>
+        <servlet-class>ru.itpark.servlets.GroupsServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>groupJspServlet</servlet-name>
+        <url-pattern>/groups</url-pattern>
+    </servlet-mapping>
+    <listener>
+        <listener-class>ru.itpark.ContextListener</listener-class>
+    </listener>
 </web-app>

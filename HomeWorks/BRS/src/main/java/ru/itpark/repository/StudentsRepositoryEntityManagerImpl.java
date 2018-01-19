@@ -1,32 +1,16 @@
-package ru.itpark.dao;
+package ru.itpark.repository;
 
 import ru.itpark.models.Student;
 
 import javax.persistence.EntityManager;
 import java.util.List;
 
-public class StudentRepositoryEntityManagerImpl implements StudentDao {
+public class StudentsRepositoryEntityManagerImpl implements StudentsRepository {
 
     private EntityManager entityManager;
 
-    public StudentRepositoryEntityManagerImpl(EntityManager entityManager) {
+    public StudentsRepositoryEntityManagerImpl(EntityManager entityManager) {
         this.entityManager = entityManager;
-    }
-
-
-    @Override
-    public Student find(int id) {
-        return null;
-    }
-
-    @Override
-    public void update(Student model) {
-
-    }
-
-    @Override
-    public void delete(int id) {
-
     }
 
     @Override
@@ -41,10 +25,5 @@ public class StudentRepositoryEntityManagerImpl implements StudentDao {
         entityManager.getTransaction().begin();
         entityManager.persist(model);
         entityManager.getTransaction().commit();
-    }
-
-    @Override
-    public List<Student> findAllByGroup(String group) {
-        return null;
     }
 }

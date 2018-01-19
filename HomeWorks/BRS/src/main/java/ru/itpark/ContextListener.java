@@ -1,7 +1,6 @@
 package ru.itpark;
 
-import ru.itpark.dao.StudentDao;
-import ru.itpark.dao.StudentRepositoryEntityManagerImpl;
+import ru.itpark.repository.*;
 
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
@@ -14,9 +13,14 @@ public class ContextListener implements ServletContextListener {
         EntityManagerFactory factory =
                 Persistence.createEntityManagerFactory("ru.itpark.persistence");
 
-        StudentDao studentRepository = new StudentRepositoryEntityManagerImpl(factory.createEntityManager());
+        StudentsRepository studentsRepository = new StudentsRepositoryEntityManagerImpl(factory.createEntityManager());
+        servletContextEvent.getServletContext().setAttribute("studentsRepository", studentsRepository);
 
-        servletContextEvent.getServletContext().setAttribute("studentDao", studentRepository);
+        TeachersRepository teachersRepository = new TeachersRepositoryEntityManagerImpl(factory.createEntityManager());
+        servletContextEvent.getServletContext().setAttribute("teachersRepository", teachersRepository);
+
+        GroupsRepository groupsRepository = new GroupsRepositoryEntityManagerImpl(factory.createEntityManager());
+        servletContextEvent.getServletContext().setAttribute("groupsRepository", groupsRepository);
     }
 
     @Override

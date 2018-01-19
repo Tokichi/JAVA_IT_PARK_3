@@ -5,6 +5,8 @@ import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.PreparedStatementCreator;
 import org.springframework.jdbc.core.RowMapper;
+import org.springframework.jdbc.support.GeneratedKeyHolder;
+import org.springframework.jdbc.support.KeyHolder;
 import ru.itpark.models.Student;
 
 import javax.sql.DataSource;
@@ -16,6 +18,8 @@ import java.util.List;
 
 public class StudentDaoJdbcTemplateImpl implements StudentDao {
 
+    //language=SQL
+    private static final String SQL_INSERT_STUDENT = "INSERT INTO student(name, surname, patronymic, login, password, email)" + "VALUES (?, ?, ?, ?, ?, ?)";
     //language=SQL
     private static final String SQL_SELECT_STUDENT_BY_ID = "SELECT * FROM student WHERE id = ?";
     //language=SQL
@@ -45,11 +49,23 @@ public class StudentDaoJdbcTemplateImpl implements StudentDao {
         }
     };
 
-    public List<Student> findAllByGroup(String group) {
-        return null;
-    }
-
     public void save(Student model) {
+        KeyHolder keyHolder = new GeneratedKeyHolder();
+        template.update(
+                new PreparedStatementCreator() {
+                    @Override
+                    public PreparedStatement createPreparedStatement(Connection connection) throws SQLException {
+                        PreparedStatement preparedStatement = connection.prepareStatement(SQL_INSERT_STUDENT, new String[]{"id"});
+                        preparedStatement.setString(1, model.getName());
+                        preparedStatement.setString(2, model.getSurname());
+                        preparedStatement.setString(3, model.getPatronymic());
+                        preparedStatement.setString(4, model.getLogin());
+                        preparedStatement.setString(5, model.getPassword());
+                        preparedStatement.setString(6, model.getEmail());
+                        return preparedStatement;
+                    }
+                }, keyHolder);
+        model.setId(keyHolder.getKey().longValue());
     }
 
     public Student find(int id) {

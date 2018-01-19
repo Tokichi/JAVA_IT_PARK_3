@@ -1,11 +1,9 @@
 package ru.itpark.servlets;
 
 import ru.itpark.models.Student;
-import ru.itpark.dao.StudentDao;
-import ru.itpark.dao.StudentRepositoryEntityManagerImpl;
+import ru.itpark.repository.StudentsRepository;
 
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.Persistence;
+
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -13,21 +11,19 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-public class StudentJspServlet extends HttpServlet {
+public class StudentsServlet extends HttpServlet {
 
-    private StudentDao studentRepository;
+    private StudentsRepository studentsRepository;
 
     @Override
     public void init(ServletConfig config) throws ServletException {
-        this.studentRepository = (StudentDao)config.getServletContext().getAttribute("studentDao");
+        this.studentsRepository = (StudentsRepository)config.getServletContext().getAttribute("studentsRepository");
     }
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        req.setAttribute("hello", "Список студентов");
-
-        req.setAttribute("students", studentRepository.findAll());
-        req.getRequestDispatcher("/jsp/students_with_tags.jsp").forward(req, resp);
+        req.setAttribute("students", studentsRepository.findAll());
+        req.getRequestDispatcher("/jsp/students.jsp").forward(req, resp);
     }
 
     @Override
@@ -40,7 +36,7 @@ public class StudentJspServlet extends HttpServlet {
         String password = req.getParameter("password");
         String email = req.getParameter("email");
 
-        Student students = Student.builder()
+        Student student = Student.builder()
                 .name(name)
                 .surname(surname)
                 .patronymic(patronymic)
@@ -49,7 +45,7 @@ public class StudentJspServlet extends HttpServlet {
                 .email(email)
                 .build();
 
-        studentRepository.save(students);
-        resp.sendRedirect("/students_with_tags.jsp");
+        studentsRepository.save(student);
+        resp.sendRedirect("/students");
     }
 }

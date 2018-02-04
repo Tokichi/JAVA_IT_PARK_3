@@ -19,8 +19,8 @@ public class ContextListener implements ServletContextListener {
         TeachersRepository teachersRepository = new TeachersRepositoryEntityManagerImpl(factory.createEntityManager());
         servletContextEvent.getServletContext().setAttribute("teachersRepository", teachersRepository);
 
-        GroupsRepository groupsRepository = new GroupsRepositoryEntityManagerImpl(factory.createEntityManager());
-        servletContextEvent.getServletContext().setAttribute("groupsRepository", groupsRepository);
+        StudyGroupsRepository studyGroupsRepository = new StudyGroupsRepositoryEntityManagerImpl(factory.createEntityManager());
+        servletContextEvent.getServletContext().setAttribute("studyGroupsRepository", studyGroupsRepository);
     }
 
     @Override

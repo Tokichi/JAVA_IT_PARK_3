@@ -12,7 +12,6 @@ import javax.persistence.*;
 @ToString
 @EqualsAndHashCode
 @Builder
-
 public class Student {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -23,4 +22,8 @@ public class Student {
     private String login;
     private String password;
     private String email;
+//
+//    @ManyToOne
+//    @JoinColumn(name = "studygroup_id")
+//    private StudyGroup studyGroup;
 }

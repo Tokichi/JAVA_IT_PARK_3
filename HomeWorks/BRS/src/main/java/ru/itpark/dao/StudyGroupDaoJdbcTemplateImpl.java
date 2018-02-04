@@ -7,7 +7,7 @@ import org.springframework.jdbc.core.PreparedStatementCreator;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.support.GeneratedKeyHolder;
 import org.springframework.jdbc.support.KeyHolder;
-import ru.itpark.models.Group;
+import ru.itpark.models.StudyGroup;
 
 import javax.sql.DataSource;
 import java.sql.Connection;
@@ -16,7 +16,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
 
-public class GroupDaoJdbcTemplateImpl implements GroupDao {
+public class StudyGroupDaoJdbcTemplateImpl implements StudyGroupDao {
 
     //language=SQL
     private static final String SQL_INSERT_GROUP = "INSERT INTO study_group (name)" + "VALUES (?)";
@@ -29,14 +29,14 @@ public class GroupDaoJdbcTemplateImpl implements GroupDao {
 
     private JdbcTemplate template;
 
-    public GroupDaoJdbcTemplateImpl(DataSource dataSource) {
+    public StudyGroupDaoJdbcTemplateImpl(DataSource dataSource) {
         this.template = new JdbcTemplate(dataSource);
     }
 
-    private RowMapper<Group> groupRowMapper = new RowMapper<Group>() {
+    private RowMapper<StudyGroup> groupRowMapper = new RowMapper<StudyGroup>() {
         @Override
-        public Group mapRow(ResultSet resultSet, int i) throws SQLException {
-            Group group = Group.builder()
+        public StudyGroup mapRow(ResultSet resultSet, int i) throws SQLException {
+            StudyGroup group = StudyGroup.builder()
                     .id(resultSet.getLong("id"))
                     .name(resultSet.getString("name"))
                     .build();
@@ -44,7 +44,7 @@ public class GroupDaoJdbcTemplateImpl implements GroupDao {
         }
     };
 
-    public void save(Group model) {
+    public void save(StudyGroup model) {
         KeyHolder keyHolder = new GeneratedKeyHolder();
         template.update(
                 new PreparedStatementCreator() {
@@ -58,7 +58,7 @@ public class GroupDaoJdbcTemplateImpl implements GroupDao {
         model.setId(keyHolder.getKey().longValue());
     }
 
-    public Group find(int id) {
+    public StudyGroup find(int id) {
         try {
             return template.queryForObject(SQL_SELECT_GROUP_BY_ID, groupRowMapper, id);
         } catch (EmptyResultDataAccessException e) {
@@ -66,7 +66,7 @@ public class GroupDaoJdbcTemplateImpl implements GroupDao {
         }
     }
 
-    public void update(final Group model) {
+    public void update(final StudyGroup model) {
         template.update(new PreparedStatementCreator() {
             @Override
             public PreparedStatement createPreparedStatement(Connection connection) throws SQLException {
@@ -82,7 +82,7 @@ public class GroupDaoJdbcTemplateImpl implements GroupDao {
         template.update(SQL_DELETE_GROUP_BY_ID, id);
     }
 
-    public List<Group> findAll() {
+    public List<StudyGroup> findAll() {
         return null;
     }
 }

@@ -3,10 +3,9 @@ package ru.itpark.models;
 import lombok.*;
 
 import javax.persistence.*;
-import java.util.List;
 
 @Entity
-@Table
+@Table(name = "brs_user")
 @Getter
 @Setter
 @AllArgsConstructor
@@ -14,15 +13,21 @@ import java.util.List;
 @ToString
 @EqualsAndHashCode
 @Builder
-public class Teacher {
-
+public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
     private String name;
     private String surname;
     private String patronymic;
-    private String login;
-    private String password;
     private String email;
+
+    private String hashPassword;
+
+    @Enumerated(value = EnumType.STRING)
+    private State state;
+
+    @Enumerated(value = EnumType.STRING)
+    private Role role;
 }

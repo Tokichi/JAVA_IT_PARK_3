@@ -22,7 +22,7 @@
     </servlet-mapping>
     <servlet>
         <servlet-name>groupJspServlet</servlet-name>
-        <servlet-class>ru.itpark.servlets.GroupsServlet</servlet-class>
+        <servlet-class>ru.itpark.servlets.StudyGroupsServlet</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>groupJspServlet</servlet-name>

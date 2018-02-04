@@ -2,9 +2,10 @@ package ru.itpark.models;
 
 import lombok.*;
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
-@Table(name = "study_group")
+@Table(name = "studygroup")
 @Getter
 @Setter
 @AllArgsConstructor
@@ -13,9 +14,12 @@ import javax.persistence.*;
 @EqualsAndHashCode
 @Builder
 
-public class Group {
+public class StudyGroup {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
+//
+//    @OneToMany(mappedBy = "student")
+//    private List<Student> students;
 }

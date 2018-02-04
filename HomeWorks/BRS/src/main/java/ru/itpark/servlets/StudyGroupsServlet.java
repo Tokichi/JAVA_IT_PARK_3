@@ -1,7 +1,7 @@
 package ru.itpark.servlets;
 
-import ru.itpark.models.Group;
-import ru.itpark.repository.GroupsRepository;
+import ru.itpark.models.StudyGroup;
+import ru.itpark.repository.StudyGroupsRepository;
 
 
 import javax.servlet.ServletConfig;
@@ -11,19 +11,19 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-public class GroupsServlet extends HttpServlet {
+public class StudyGroupsServlet extends HttpServlet {
 
-    private GroupsRepository groupsRepository;
+    private StudyGroupsRepository studyGroupsRepository;
 
         @Override
         public void init(ServletConfig config) throws ServletException {
-            this.groupsRepository = (GroupsRepository)config.getServletContext().getAttribute("groupsRepository");
+            this.studyGroupsRepository = (StudyGroupsRepository)config.getServletContext().getAttribute("studyGroupsRepository");
         }
 
         @Override
         protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-            req.setAttribute("groups", groupsRepository.findAll());
-            req.getRequestDispatcher("/jsp/groups.jsp").forward(req, resp);
+            req.setAttribute("studyGroups", studyGroupsRepository.findAll());
+            req.getRequestDispatcher("/jsp/studyGroups.jsp").forward(req, resp);
     }
 
     @Override
@@ -31,11 +31,11 @@ public class GroupsServlet extends HttpServlet {
         req.setCharacterEncoding("UTF-8");
         String name = req.getParameter("name");
 
-        Group group = Group.builder()
+        StudyGroup studyGroup = StudyGroup.builder()
                 .name(name)
                 .build();
 
-        groupsRepository.save(group);
-        resp.sendRedirect("/groups");
+        studyGroupsRepository.save(studyGroup);
+        resp.sendRedirect("/studyGroups");
     }
 }

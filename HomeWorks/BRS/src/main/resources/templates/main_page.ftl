@@ -7,16 +7,6 @@
     <title>Главная страница</title>
 </head>
 <body>
-<#if model.user??>
-<div>
-${model.user.id}
-    <br>
-${model.user.name}
-</div>
-<#else>
-<div>
-    <a href="/login">Войти</a>
-</div>
-</#if>
+<#include 'common/header.ftl'/>
 </body>
 </html>

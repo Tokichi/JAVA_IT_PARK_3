@@ -10,6 +10,7 @@
 <#if model.error == true>
 <h1>Неверно введено имя пользователя или пароль</h1>
 </#if>
+<div align="center">
 <form class="form-style-4" title="Регистрация"
       name="registrationForm"
       method="post"
@@ -18,9 +19,11 @@
     <input type="text" name="email" placeholder="Почта"/>
     <br>
     <input type="password" name="password" placeholder="Пароль"/>
+    <br>
     <input type="checkbox" name="remember-me">Запомнить
     <br>
     <input type="submit">
 </form>
+</div>
 </body>
 </html>

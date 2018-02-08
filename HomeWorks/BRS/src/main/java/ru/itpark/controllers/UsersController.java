@@ -7,7 +7,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
 import ru.itpark.forms.NamesForm;
-import ru.itpark.models.Role;
 import ru.itpark.models.User;
 import ru.itpark.services.AuthenticationService;
 import ru.itpark.services.UsersService;
@@ -47,21 +46,34 @@ public class UsersController {
         return "students_page";
     }
 
-    @GetMapping("/users/{user-id}")
+    @GetMapping("/students/{user-id}")
     public String getUserPage(@ModelAttribute("model") ModelMap model,
-                              @PathVariable("user-id") Long userId) {
-        User user = service.getUser(userId);
+                              @PathVariable("user-id") Long studentId) {
+        User user = service.getStudent(studentId);
         model.addAttribute("user", user);
-        return "user_page";
+        return "student_page";
     }
 
-    @PostMapping("/users/{user-id}")
+    @PostMapping("/students/{user-id}")
     @ResponseBody
     public ResponseEntity<Object> updateUser(@PathVariable("user-id") Long userId,
                                              NamesForm form) {
         service.update(userId, form);
         return ResponseEntity.accepted().build();
     }
+
+    @GetMapping("/add_student")
+    public String getAddStudentPage() {
+        return "/add_student_page";
+    }
+
+    @PostMapping("/add_student")
+    public String registrationUser(@ModelAttribute User form,
+                                   @ModelAttribute("model") ModelMap model) {
+        service.saveStudent(form);
+        return "/student_page";
+    }
+
     @GetMapping("/login")
     public String login(
             @ModelAttribute("model") ModelMap model,
@@ -71,7 +83,7 @@ public class UsersController {
         } else {
             model.addAttribute("error", false);
         }
-        return "login";
+        return "/login";
     }
 
 }

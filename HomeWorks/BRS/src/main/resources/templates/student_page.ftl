@@ -9,14 +9,16 @@
 <body>
 <script>
     <#--Функция принимает на вход два параметра - имя и фамилию -->
-    function sendNewNameOrSurName(name, surname) {
+    function sendNewNameOrSurName(name, surname, patronymic, email) {
         // Оотправляем ajax-запорс на сервер
         $.ajax({
             type: "POST",
-            url: "/users/${model.user.id}",
+            url: "/students/${model.user.id}",
             data: {
                 "name": name,
-                "surname": surname
+                "surname": surname,
+                "patronymic": patronymic,
+                "email": email
             },
             error: function (data) {
                 alert(data.status)
@@ -30,9 +32,14 @@
 <div>
     <input type="text" id="name" name="name" value="${model.user.name}"/>
     <input type="text" id="surname" name="surname" value="${model.user.surname}"/>
+    <input type="text" id="patronymic" name="patronymic" value="${model.user.patronymic}"/>
+    <input type="text" id="email" name="email" value="${model.user.email}"/>
     <button onclick="sendNewNameOrSurName(
         document.getElementById('name').value,
-        document.getElementById('surname').value)">Отправить</button>
+        document.getElementById('surname').value),
+        document.getElementById('patronymic').value),
+        document.getElementById('email').value)">Отправить
+    </button>
 </div>
 </body>
 </html>

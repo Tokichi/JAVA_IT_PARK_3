@@ -5,7 +5,7 @@ import javax.persistence.*;
 import java.util.List;
 
 @Entity
-@Table(name = "studygroup")
+@Table(name = "brs_group")
 @Getter
 @Setter
 @AllArgsConstructor
@@ -14,12 +14,12 @@ import java.util.List;
 @EqualsAndHashCode
 @Builder
 
-public class StudyGroup {
+public class Group {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
-//
-//    @OneToMany(mappedBy = "student")
-//    private List<Student> students;
+
+//   @OneToMany(mappedBy = "student")
+//   private List<Student> students;
 }

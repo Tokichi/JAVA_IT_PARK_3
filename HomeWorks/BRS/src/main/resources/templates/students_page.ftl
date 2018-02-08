@@ -9,7 +9,7 @@
 <body>
 <#include 'common/header.ftl'/>
 <ul class="menu-main">
-    <li><a href="">Добавить нового студента</a></li>
+    <li><a href="/add_student">Добавить нового студента</a></li>
 </ul>
 <div align="center">
     <h1>Список студентов</h1>
@@ -29,8 +29,8 @@
         <td>${user.email}</td>
         <td>
             <div align="center">
-            <form method="POST" action="/students">
-                <input type="hidden" name="product_id" value="<?php echo $row->product_id; ?>"/>
+            <form method="GET" action="/students/${user.id}">
+                <input type="hidden" name="student" value=""/>
                 <input type="submit" value="Редактировать"/>
             </form>
             </div>

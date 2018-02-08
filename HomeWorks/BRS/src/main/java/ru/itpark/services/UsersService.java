@@ -6,10 +6,10 @@ import ru.itpark.models.User;
 import java.util.List;
 
 public interface UsersService {
-    List<User> getUsers(String orderBy);
 
-    User getUser(Long userId);
+    User getStudent(Long userId);
 
     void update(Long userId, NamesForm form);
     List<User> getAllStudents();
+    void saveStudent(User form);
 }

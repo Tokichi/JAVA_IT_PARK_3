@@ -17,6 +17,7 @@
 <ul class="menu-main">
     <li><a href="/students">Студенты</a></li>
     <li><a href="">Преподаватели</a></li>
+    <li><a href="">Группы</a></li>
     <li><a href="">Дисциплины</a></li>
     <li><a href="">Занятия</a></li>
 </ul>

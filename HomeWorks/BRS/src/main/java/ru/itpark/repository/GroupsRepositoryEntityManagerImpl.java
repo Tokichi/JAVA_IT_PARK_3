@@ -1,27 +1,27 @@
 package ru.itpark.repository;
 
-import ru.itpark.models.StudyGroup;
+import ru.itpark.models.Group;
 
 import javax.persistence.EntityManager;
 import java.util.List;
 
-public class StudyGroupsRepositoryEntityManagerImpl implements StudyGroupsRepository {
+public class GroupsRepositoryEntityManagerImpl implements GroupsRepository {
 
     private EntityManager entityManager;
 
-    public StudyGroupsRepositoryEntityManagerImpl(EntityManager entityManager) {
+    public GroupsRepositoryEntityManagerImpl(EntityManager entityManager) {
         this.entityManager = entityManager;
     }
 
     @Override
-    public List<StudyGroup> findAll() {
+    public List<Group> findAll() {
         return entityManager
-                .createQuery("from StudyGroup studyGroup order by studygroup.id", StudyGroup.class)
+                .createQuery("from StudyGroup studyGroup order by studygroup.id", Group.class)
                 .getResultList();
     }
 
     @Override
-    public void save(StudyGroup model) {
+    public void save(Group model) {
         entityManager.getTransaction().begin();
         entityManager.persist(model);
         entityManager.getTransaction().commit();

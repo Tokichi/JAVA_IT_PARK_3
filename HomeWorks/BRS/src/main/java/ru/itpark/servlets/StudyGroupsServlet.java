@@ -1,7 +1,7 @@
 package ru.itpark.servlets;
 
-import ru.itpark.models.StudyGroup;
-import ru.itpark.repository.StudyGroupsRepository;
+import ru.itpark.models.Group;
+import ru.itpark.repository.GroupsRepository;
 
 
 import javax.servlet.ServletConfig;
@@ -13,11 +13,11 @@ import java.io.IOException;
 
 public class StudyGroupsServlet extends HttpServlet {
 
-    private StudyGroupsRepository studyGroupsRepository;
+    private GroupsRepository studyGroupsRepository;
 
         @Override
         public void init(ServletConfig config) throws ServletException {
-            this.studyGroupsRepository = (StudyGroupsRepository)config.getServletContext().getAttribute("studyGroupsRepository");
+            this.studyGroupsRepository = (GroupsRepository)config.getServletContext().getAttribute("studyGroupsRepository");
         }
 
         @Override
@@ -31,11 +31,11 @@ public class StudyGroupsServlet extends HttpServlet {
         req.setCharacterEncoding("UTF-8");
         String name = req.getParameter("name");
 
-        StudyGroup studyGroup = StudyGroup.builder()
+        Group group = Group.builder()
                 .name(name)
                 .build();
 
-        studyGroupsRepository.save(studyGroup);
+        studyGroupsRepository.save(group);
         resp.sendRedirect("/studyGroups");
     }
 }

@@ -22,8 +22,8 @@ public class Student {
     private String login;
     private String password;
     private String email;
-//
-//    @ManyToOne
-//    @JoinColumn(name = "studygroup_id")
-//    private StudyGroup studyGroup;
+
+//   @ManyToOne
+//    @JoinColumn(name = "brs_group_id")
+//     private Group group;
 }

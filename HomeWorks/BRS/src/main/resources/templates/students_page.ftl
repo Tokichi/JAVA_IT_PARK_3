@@ -9,7 +9,7 @@
 <body>
 <#include 'common/header.ftl'/>
 <ul class="menu-main">
-    <li><a href="/add_student">Добавить нового студента</a></li>
+    <li><a href="/addStudent">Добавить нового студента</a></li>
 </ul>
 <div align="center">
     <h1>Список студентов</h1>

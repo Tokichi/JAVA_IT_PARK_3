@@ -7,6 +7,7 @@
     <title>Просмотр пользователя</title>
 </head>
 <body>
+<#include 'common/header.ftl'/>
 <script>
     <#--Функция принимает на вход два параметра - имя и фамилию -->
     function sendNewNameOrSurName(name, surname, patronymic, email) {
@@ -29,7 +30,7 @@
         });
     }
 </script>
-<div>
+<div align="center">
     <input type="text" id="name" name="name" value="${model.user.name}"/>
     <input type="text" id="surname" name="surname" value="${model.user.surname}"/>
     <input type="text" id="patronymic" name="patronymic" value="${model.user.patronymic}"/>

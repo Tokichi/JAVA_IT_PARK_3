@@ -6,6 +6,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
+import ru.itpark.forms.AddStudentForm;
 import ru.itpark.forms.NamesForm;
 import ru.itpark.models.User;
 import ru.itpark.services.AuthenticationService;
@@ -62,16 +63,15 @@ public class UsersController {
         return ResponseEntity.accepted().build();
     }
 
-    @GetMapping("/add_student")
-    public String getAddStudentPage() {
-        return "/add_student_page";
+    @GetMapping("/addStudent")
+    public String getAddStudentPage(@ModelAttribute("model") ModelMap model) {
+        return "add_student_page";
     }
 
-    @PostMapping("/add_student")
-    public String registrationUser(@ModelAttribute User form,
-                                   @ModelAttribute("model") ModelMap model) {
+    @PostMapping("/addStudent")
+    public String addStudent(@ModelAttribute AddStudentForm form) {
         service.saveStudent(form);
-        return "/student_page";
+        return "redirect:/students";
     }
 
     @GetMapping("/login")
@@ -83,7 +83,7 @@ public class UsersController {
         } else {
             model.addAttribute("error", false);
         }
-        return "/login";
+        return "login";
     }
 
 }

@@ -1,5 +1,6 @@
 package ru.itpark.services;
 
+import ru.itpark.forms.AddStudentForm;
 import ru.itpark.forms.NamesForm;
 import ru.itpark.models.User;
 
@@ -11,5 +12,5 @@ public interface UsersService {
 
     void update(Long userId, NamesForm form);
     List<User> getAllStudents();
-    void saveStudent(User form);
+    void saveStudent(AddStudentForm form);
 }

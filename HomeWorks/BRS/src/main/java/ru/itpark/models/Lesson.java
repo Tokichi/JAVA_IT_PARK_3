@@ -1,7 +1,9 @@
 package ru.itpark.models;
 
 import lombok.*;
-
+import javax.persistence.*;
+@Entity
+@Table(name = "lesson")
 @Getter
 @Setter
 @AllArgsConstructor
@@ -11,8 +13,15 @@ import lombok.*;
 @Builder
 
 public class Lesson {
-    private int id;
-    private long startTime;
-    private long endTime;
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+    private String lessonDay;
+    private String lessonTime;
+    private String nameCourse;
+
+    @ManyToOne
+    @JoinColumn(name = "course_id")
     private Course course;
 }

@@ -1,8 +1,8 @@
 package ru.itpark.models;
 
 import lombok.*;
-
 import javax.persistence.*;
+
 
 @Entity
 @Table(name = "brs_user")
@@ -10,9 +10,9 @@ import javax.persistence.*;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-@ToString
 @EqualsAndHashCode
 @Builder
+
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -22,7 +22,7 @@ public class User {
     private String surname;
     private String patronymic;
     private String email;
-
+    private String goupName;
     private String hashPassword;
 
     @Enumerated(value = EnumType.STRING)
@@ -30,4 +30,17 @@ public class User {
 
     @Enumerated(value = EnumType.STRING)
     private Role role;
+
+
+    @ManyToOne
+    @JoinColumn(name = "group_id")
+    private Group group;
+
+
+    public void update(User user) {
+        user.setName(this.name);
+        user.setSurname(this.surname);
+        user.setPatronymic(this.patronymic);
+        user.setEmail(this.email);
+    }
 }

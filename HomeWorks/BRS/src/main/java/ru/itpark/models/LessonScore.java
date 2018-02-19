@@ -13,6 +13,5 @@ import lombok.*;
 public class LessonScore {
     private int id;
     private Lesson lesson;
-    private Student student;
 
 }

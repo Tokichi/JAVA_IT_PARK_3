@@ -19,8 +19,8 @@ public class MainPageController {
     public String getMainPage(Authentication authentication,
                               @ModelAttribute("model") ModelMap model) {
         if (authentication != null) {
-            User user = authenticationService.getUserByAuthentication(authentication);
-            model.addAttribute("user", user);
+            User currentUser = authenticationService.getUserByAuthentication(authentication);
+            model.addAttribute("currentUser", currentUser);
         }
         return "main_page";
     }

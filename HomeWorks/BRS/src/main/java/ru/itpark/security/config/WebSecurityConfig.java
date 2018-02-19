@@ -28,15 +28,25 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http
                 .authorizeRequests() // блок, отвечающий за урлы и их доступы
-                .antMatchers("/registration/**").permitAll() // разрешили всем
-                .antMatchers("/confirm/**").permitAll()
-                .antMatchers("/students").permitAll()
-                .antMatchers("/teachers").permitAll()
-                .antMatchers("/addStudent").permitAll()
+                .antMatchers("/students/**").hasAnyAuthority("ADMIN", "TEACHER")
+                .antMatchers("/addStudent").hasAnyAuthority("ADMIN", "TEACHER")
+                .antMatchers("/teachers/**").hasAnyAuthority("ADMIN")
+                .antMatchers("/addTeacher").hasAnyAuthority("ADMIN")
+                .antMatchers("/groups/**").hasAnyAuthority("ADMIN")
+                .antMatchers("/addGroup").hasAnyAuthority("ADMIN")
+                .antMatchers("/disciplines/**").hasAnyAuthority("ADMIN", "TEACHER")
+                .antMatchers("/addDiscipline").hasAnyAuthority("ADMIN", "TEACHER")
+                .antMatchers("/courses/**").hasAnyAuthority("ADMIN", "TEACHER")
+                .antMatchers("/addCourse").hasAnyAuthority("ADMIN", "TEACHER")
+                .antMatchers("/lessons/**").hasAnyAuthority("ADMIN", "TEACHER")
+                .antMatchers("/addLesson").hasAnyAuthority("ADMIN", "TEACHER")
+                .antMatchers("/lessonScore/**").hasAnyAuthority("ADMIN", "TEACHER")
+                .antMatchers("/addLesson").hasAnyAuthority("ADMIN", "TEACHER")
+                .antMatchers("/addStudentEror").permitAll()
+                .antMatchers("/images/**").permitAll()
                 .antMatchers("/css/**").permitAll()
                 .antMatchers("/js/**").permitAll()
-                .antMatchers("/profile/**").hasAnyAuthority("USER", "ADMIN") // разрешили админу и пользователям
-                .antMatchers("/users/**").hasAnyAuthority("ADMIN") // только админу
+                .antMatchers("/profile/**").hasAnyAuthority("TEACHER", "ADMIN") // разрешили админу и пользователям
                 .anyRequest().authenticated() // все остальные запросы требуют предварительной авторизации
                 .and()
                 .formLogin() // блок с формой входа
@@ -44,7 +54,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .usernameParameter("email")
                 .passwordParameter("password")
                 .defaultSuccessUrl("/")
-                .failureUrl("/")
+                .failureUrl("/login?error=true")
                 .permitAll()
                 .and()
                 .logout()

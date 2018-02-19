@@ -1,7 +1,9 @@
 package ru.itpark.models;
 
 import lombok.*;
-
+import javax.persistence.*;
+@Entity
+@Table(name = "discipline")
 @Getter
 @Setter
 @AllArgsConstructor
@@ -11,7 +13,12 @@ import lombok.*;
 @Builder
 
 public class Discipline {
-    private int id;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
     private String name;
-    private String descriptions;
+
+    public void update(Discipline discipline) {
+        discipline.setName(this.name);
+    }
 }

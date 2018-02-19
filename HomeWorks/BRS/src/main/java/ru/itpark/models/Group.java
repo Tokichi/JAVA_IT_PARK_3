@@ -2,7 +2,6 @@ package ru.itpark.models;
 
 import lombok.*;
 import javax.persistence.*;
-import java.util.List;
 
 @Entity
 @Table(name = "brs_group")
@@ -20,6 +19,7 @@ public class Group {
     private Long id;
     private String name;
 
-//   @OneToMany(mappedBy = "student")
-//   private List<Student> students;
+    public void update(Group group) {
+        group.setName(this.name);
+    }
 }

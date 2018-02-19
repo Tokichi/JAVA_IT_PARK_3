@@ -13,13 +13,15 @@
 </ul>
 <div align="center">
     <h1>Список студентов</h1>
-<table>
+<table class="table_blur">
     <tr>
         <th>Имя</th>
         <th>Фамилия</th>
         <th>Отчество</th>
         <th>Почта</th>
+        <th>Группа</th>
         <th>Редактировать</th>
+        <th>Удалить</th>
     </tr>
 <#list model.users as user>
     <tr>
@@ -27,12 +29,21 @@
         <td>${user.surname}</td>
         <td>${user.patronymic}</td>
         <td>${user.email}</td>
+        <td>${user.goupName}</td>
         <td>
             <div align="center">
             <form method="GET" action="/students/${user.id}">
                 <input type="hidden" name="student" value=""/>
                 <input type="submit" value="Редактировать"/>
             </form>
+            </div>
+        </td>
+        <td>
+            <div align="center">
+                <form method="GET" action="/students/delete/${user.id}">
+                    <input type="hidden" name="student" value=""/>
+                    <input type="submit" value="Удалить"/>
+                </form>
             </div>
         </td>
     </tr>

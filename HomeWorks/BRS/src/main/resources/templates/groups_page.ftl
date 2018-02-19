@@ -3,31 +3,38 @@
 <@spring.bind "model"/>
 <html>
 <head>
-    <title>Список групп</title>
+    <title>Список студентов</title>
     <link rel="stylesheet" href="/css/style.css">
 </head>
 <body>
 <#include 'common/header.ftl'/>
 <ul class="menu-main">
-    <li><a href="">Добавить новую группу</a></li>
+    <li><a href="/addGroup">Добавить новую группу</a></li>
 </ul>
 <div align="center">
     <h1>Список групп</h1>
-    <table>
+    <table class="table_blur">
         <tr>
-            <th>Имя группы</th>
+            <th>Имя</th>
+            <th>Редактировать</th>
+            <th>Удалить</th>
         </tr>
-<#list model.users as user>
+<#list model.groups as group>
     <tr>
-        <td>${user.name}</td>
-        <td>${user.surname}</td>
-        <td>${user.patronymic}</td>
-        <td>${user.email}</td>
+        <td>${group.name}</td>
         <td>
             <div align="center">
-                <form method="POST" action="/groups">
-                    <input type="hidden" name="product_id" value="<?php echo $row->product_id; ?>"/>
+                <form method="GET" action="/groups/${group.id}">
+                    <input type="hidden" name="group" value=""/>
                     <input type="submit" value="Редактировать"/>
+                </form>
+            </div>
+        </td>
+        <td>
+            <div align="center">
+                <form method="GET" action="/groups/delete/${group.id}">
+                    <input type="hidden" name="group" value=""/>
+                    <input type="submit" value="Удалить"/>
                 </form>
             </div>
         </td>

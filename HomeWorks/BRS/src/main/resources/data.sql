@@ -1,17 +1,24 @@
 INSERT INTO brs_user
-(id, email, hash_password, state, role, surname, name)
+(id, email, hash_password, state, role, name, surname, patronymic)
   SELECT
     1,
-    'admin@admin.com',
-    '$2a$10$CVYX7vIc3a7nz7cWiGj0xeBUlAfcg7dVtWc2n5hQv7CNzTD4UGxeK',
-
+    'admin',
+    '$2a$10$num6dkwy8/VuFNDTaR0N3u2rMq4jnZRCVTj1KBhO0.EZi2Kr1GmHS',
     'CONFIRMED',
     'ADMIN',
-    'admin',
-    'admin'
+    'Админ',
+    'Админов',
+    'Админович'
   WHERE
     NOT EXISTS(
         SELECT id
         FROM brs_user
         WHERE id = 1
     );
+
+CREATE TABLE IF NOT EXISTS persistent_logins (
+  username VARCHAR(64) NOT NULL,
+  series VARCHAR(64) PRIMARY KEY NOT NULL,
+  token VARCHAR(64) NOT NULL,
+  last_used TIMESTAMP NOT NULL
+)

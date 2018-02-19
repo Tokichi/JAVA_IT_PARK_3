@@ -53,24 +53,18 @@
             <artifactId>mail</artifactId>
             <version>1.4.7</version>
         </dependency>
-        <!-- https://mvnrepository.com/artifact/commons-io/commons-io -->
         <dependency>
             <groupId>commons-io</groupId>
             <artifactId>commons-io</artifactId>
             <version>2.6</version>
         </dependency>
     </dependencies>
-
-    <!--Указываем конфигурацию сборки приложения-->
     <build>
-        <!-- Список плагинов сборки-->
         <plugins>
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
             </plugin>
-            <!--Плагин сборки Maven, который позволяет настроить
-            режим компиляции -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
